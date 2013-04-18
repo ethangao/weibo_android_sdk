@@ -6,6 +6,7 @@ import java.io.InputStream;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -33,6 +34,7 @@ import android.webkit.SslErrorHandler;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.weibo.sdk.android.demo.R;
@@ -43,57 +45,52 @@ import com.weibo.sdk.android.util.Utility;
  *
  */
 public class WeiboDialog extends Dialog {
-    
+
 	static  FrameLayout.LayoutParams FILL = new FrameLayout.LayoutParams(
 			ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.FILL_PARENT);
 	private String mUrl;
 	private WeiboAuthListener mListener;
-	private ProgressDialog mSpinner;
 	private WebView mWebView;
-	private RelativeLayout webViewContainer;
-	private RelativeLayout mContent;
+	private RelativeLayout mWebViewContainer;
+	private LinearLayout mContent;
+	private View mLoadingView;
 
 	private final static String TAG = "Weibo-WebView";
-	
+
 	private static int theme=android.R.style.Theme_Translucent_NoTitleBar;
-	private  static int left_margin=0;
-    private  static int top_margin=0;
-    private  static int right_margin=0;
-    private  static int bottom_margin=0;
 	public WeiboDialog(Context context, String url, WeiboAuthListener listener) {
 		super(context,theme);
 		mUrl = url;
 		mListener = listener;
-		
+
 	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		mSpinner = new ProgressDialog(getContext());
-		mSpinner.requestWindowFeature(Window.FEATURE_NO_TITLE);
-		mSpinner.setMessage("Loading...");
-		mSpinner.setOnKeyListener(new OnKeyListener() {
 
-			@Override
-			public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
-				onBack();
-				return false;
-			}
-
-		});
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		this.getWindow().setFeatureDrawableAlpha(Window.FEATURE_OPTIONS_PANEL, 0);  
-		mContent = new RelativeLayout(getContext());
+		this.getWindow().setFeatureDrawableAlpha(Window.FEATURE_OPTIONS_PANEL, 0);
+		mContent = new LinearLayout(getContext());
+		mContent.setOrientation(LinearLayout.VERTICAL);
+		setUpTitleBar();
 		setUpWebView();
 
 		addContentView(mContent, new LayoutParams(LayoutParams.FILL_PARENT,
 				LayoutParams.FILL_PARENT));
 	}
 
+	private void setUpTitleBar() {
+	    final View titleBar = View.inflate(getContext(), R.layout.login_title_bar, null);
+        RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(LayoutParams.FILL_PARENT,
+                LayoutParams.WRAP_CONTENT);
+
+        mLoadingView = titleBar.findViewById(R.id.login_title_progressbar);
+        mContent.addView(titleBar, lp);
+	}
+
 	protected void onBack() {
 		try {
-			mSpinner.dismiss();
 			if (null != mWebView) {
 				mWebView.stopLoading();
 				mWebView.destroy();
@@ -104,7 +101,7 @@ public class WeiboDialog extends Dialog {
 	}
 
 	private void setUpWebView() {
-		webViewContainer = new RelativeLayout(getContext());
+		mWebViewContainer = new RelativeLayout(getContext());
 		mWebView = new WebView(getContext());
 		mWebView.setVerticalScrollBarEnabled(false);
 		mWebView.setHorizontalScrollBarEnabled(false);
@@ -113,67 +110,20 @@ public class WeiboDialog extends Dialog {
 		mWebView.loadUrl(mUrl);
 		mWebView.setLayoutParams(FILL);
 		mWebView.setVisibility(View.INVISIBLE);
-		
+
 		RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(LayoutParams.FILL_PARENT,
 				LayoutParams.FILL_PARENT);
-		
-		RelativeLayout.LayoutParams lp0 = new RelativeLayout.LayoutParams(LayoutParams.FILL_PARENT,
-                LayoutParams.FILL_PARENT);
-		
-        mContent.setBackgroundColor(Color.TRANSPARENT);
-        AssetManager asseets=WeiboDialog.this.getContext().getAssets();
-        InputStream is=null;
-        try {
-             try {
-               is=asseets.open("weibosdk_dialog_bg.9.png");
-               DisplayMetrics dm = this.getContext().getResources()
-                       .getDisplayMetrics();
-               float density=dm.density;
-               lp0.leftMargin =(int) (10*density);
-               lp0.topMargin = (int) (10*density);
-               lp0.rightMargin =(int) (10*density);
-               lp0.bottomMargin = (int) (10*density);
-           } catch (Exception e) {
-               e.printStackTrace();
-           }
-             if(is==null){
-                     webViewContainer.setBackgroundResource(R.drawable.weibosdk_dialog_bg);
-             }
-             else{
-                   Bitmap bitmap = BitmapFactory.decodeStream(is);
-                   NinePatchDrawable npd=new NinePatchDrawable(bitmap, bitmap.getNinePatchChunk(), new Rect(0,0,0,0), null); 
-                   webViewContainer.setBackgroundDrawable(npd);
-             }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }finally{
-            if(is!=null){
-                try {
-                    is.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-       
-		
-        webViewContainer.addView(mWebView,lp0);
-		webViewContainer.setGravity(Gravity.CENTER);
-		
-		if(parseDimens()){
-		    lp.leftMargin = left_margin;
-	        lp.topMargin = top_margin;
-	        lp.rightMargin =right_margin;
-	        lp.bottomMargin = bottom_margin;
-		}
-		else{
-		    Resources resources = getContext().getResources();
-		    lp.leftMargin=resources.getDimensionPixelSize(R.dimen.weibosdk_dialog_left_margin);
-		    lp.rightMargin=resources.getDimensionPixelSize(R.dimen.weibosdk_dialog_right_margin);
-		    lp.topMargin=resources.getDimensionPixelSize(R.dimen.weibosdk_dialog_top_margin);
-		    lp.bottomMargin=resources.getDimensionPixelSize(R.dimen.weibosdk_dialog_bottom_margin);
-		}
-        mContent.addView(webViewContainer, lp);
+
+        mContent.setBackgroundColor(Color.WHITE);
+
+        mWebViewContainer.addView(mWebView);
+		mWebViewContainer.setGravity(Gravity.CENTER);
+
+	    lp.leftMargin = 0;
+        lp.topMargin = 0;
+        lp.rightMargin =0;
+        lp.bottomMargin = 0;
+        mContent.addView(mWebViewContainer, lp);
 	}
 
 	private class WeiboWebViewClient extends WebViewClient {
@@ -182,12 +132,12 @@ public class WeiboDialog extends Dialog {
 		public boolean shouldOverrideUrlLoading(WebView view, String url) {
 			Log.d(TAG, "Redirect URL: " + url);
 			 if (url.startsWith("sms:")) {  //针对webview里的短信注册流程，需要在此单独处理sms协议
-	                Intent sendIntent = new Intent(Intent.ACTION_VIEW);  
-	                sendIntent.putExtra("address", url.replace("sms:", ""));  
-	                sendIntent.setType("vnd.android-dir/mms-sms");  
-	                WeiboDialog.this.getContext().startActivity(sendIntent);  
-	                return true;  
-	            }  
+	                Intent sendIntent = new Intent(Intent.ACTION_VIEW);
+	                sendIntent.putExtra("address", url.replace("sms:", ""));
+	                sendIntent.setType("vnd.android-dir/mms-sms");
+	                WeiboDialog.this.getContext().startActivity(sendIntent);
+	                return true;
+	            }
 			return super.shouldOverrideUrlLoading(view, url);
 		}
 
@@ -209,20 +159,19 @@ public class WeiboDialog extends Dialog {
 				return;
 			}
 			super.onPageStarted(view, url, favicon);
-			mSpinner.show();
+			mLoadingView.setVisibility(View.VISIBLE);
 		}
 
 		@Override
 		public void onPageFinished(WebView view, String url) {
 			Log.d(TAG, "onPageFinished URL: " + url);
 			super.onPageFinished(view, url);
-			if (mSpinner.isShowing()) {
-				mSpinner.dismiss();
-			}
+            mLoadingView.setVisibility(View.GONE);
 			mWebView.setVisibility(View.VISIBLE);
 		}
 
-		public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
+		@SuppressLint("NewApi")
+        public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
 			handler.proceed();
 		}
 
@@ -246,67 +195,7 @@ public class WeiboDialog extends Dialog {
 			else{
 				mListener.onWeiboException(new WeiboException(error, Integer.parseInt(error_code)));
 			}
-			
+
 		}
 	}
-	private boolean parseDimens(){
-	    boolean ret=false;
-        AssetManager asseets=this.getContext().getAssets();
-        DisplayMetrics dm = this.getContext().getResources()
-                .getDisplayMetrics();
-        float density=dm.density;
-        InputStream is=null;
-        try {
-            is=asseets.open("values/dimens.xml");
-            XmlPullParser xmlpull = Xml.newPullParser();  
-            try {
-                xmlpull.setInput(is,"utf-8");
-                int eventCode = xmlpull.getEventType();  
-                ret=true;
-                while(eventCode!=XmlPullParser.END_DOCUMENT)  {
-                    switch (eventCode)  
-                    {  
-                    case XmlPullParser.START_TAG:
-                        if(xmlpull.getName().equals("dimen")){
-                            String name=xmlpull.getAttributeValue(null, "name");
-                            if("weibosdk_dialog_left_margin".equals(name)){
-                                    String value=xmlpull.nextText();
-                                    left_margin=(int)(Integer.parseInt(value)*density);
-                            }
-                            else if("weibosdk_dialog_top_margin".equals(name)){
-                                String value=xmlpull.nextText();
-                                top_margin=(int)(Integer.parseInt(value)*density);
-                            }
-                            else if("weibosdk_dialog_right_margin".equals(name)){
-                                String value=xmlpull.nextText();
-                                right_margin=(int)(Integer.parseInt(value)*density);
-                            }
-                            else if("weibosdk_dialog_bottom_margin".equals(name)){
-                                String value=xmlpull.nextText();
-                                bottom_margin=(int)(Integer.parseInt(value)*density);
-                            }
-                        }
-                        break;
-                    }
-                    eventCode = xmlpull.next();//没有结束xml文件就推到下个进行解析  
-                }
-                
-            } catch (XmlPullParserException e) {
-                e.printStackTrace();
-            }
-            
-        } catch (IOException e) {
-            e.printStackTrace();
-        }finally{
-            if(is!=null){
-                try {
-                    is.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-        return ret;
-    }
-	
 }

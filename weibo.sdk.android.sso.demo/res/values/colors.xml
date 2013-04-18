@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?> 
+<?xml version="1.0" encoding="utf-8"?>
 <!--
 /*
  * Copyright 2011 Sina.
@@ -17,8 +17,9 @@
  * limitations under the License.
  */
 -->
-<resources> 
+<resources>
     <color name="weibosdk_transparent">#00000000</color>
     <color name="weibosdk_text_num_gray">#333</color>
     <color name="weibosdk_dialog_title_blue">#9CCCF7</color>
-</resources> 
+    <color name="title_bar_bg_color">#71c4c8</color>
+</resources>
