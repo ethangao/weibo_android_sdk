@@ -48,7 +48,7 @@ public final class R {
         public static int close_normal=0x7f020006;
         public static int close_press=0x7f020007;
         public static int close_selector=0x7f020008;
-        public static int common_title_background=0x7f020009;
+        public static int common_title_bar_bg=0x7f020009;
         public static int del_pic=0x7f02000a;
         public static int dialog_bg=0x7f02000b;
         public static int ic_action_search=0x7f02000c;

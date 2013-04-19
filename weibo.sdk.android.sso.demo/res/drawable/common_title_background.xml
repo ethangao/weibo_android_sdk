@@ -1,4 +1,0 @@
-<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
-    <item android:drawable="@android:color/black"/>
-    <item android:drawable="@drawable/title_rounded_corner_background"/>
-</layer-list>
