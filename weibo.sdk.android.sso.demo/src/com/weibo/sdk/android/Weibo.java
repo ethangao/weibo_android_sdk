@@ -10,7 +10,7 @@ import android.util.Log;
 import android.webkit.CookieSyncManager;
 
 /**
- * 
+ *
  * @author luopeng (luopeng@staff.sina.com.cn)
  */
 public class Weibo {
@@ -28,7 +28,7 @@ public class Weibo {
 	public static final String KEY_REFRESHTOKEN = "refresh_token";
 	public static boolean isWifi=false;//当前是否为wifi
 	/**
-	 * 
+	 *
 	 * @param appKey 第三方应用的appkey
 	 * @param redirectUrl 第三方应用的回调页
 	 * @return Weibo的实例
@@ -51,7 +51,7 @@ public class Weibo {
 		redirecturl = redirectUrl;
 	}
 	/**
-	 * 
+	 *
 	 * 进行微博认证
 	 * @param activity 调用认证功能的Context实例
 	 * @param listener WeiboAuthListener 微博认证的回调接口
@@ -113,6 +113,7 @@ public class Weibo {
 		parameters.add("response_type", "token");
 		parameters.add("redirect_uri", redirecturl);
 		parameters.add("display", "mobile");
+        parameters.add("forcelogin", "true");
 
 		if (accessToken != null && accessToken.isSessionValid()) {
 			parameters.add(KEY_TOKEN, accessToken.getToken());

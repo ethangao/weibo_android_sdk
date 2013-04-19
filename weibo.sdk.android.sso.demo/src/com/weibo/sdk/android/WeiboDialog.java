@@ -70,7 +70,7 @@ public class WeiboDialog extends Dialog {
 		super.onCreate(savedInstanceState);
 
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		this.getWindow().setFeatureDrawableAlpha(Window.FEATURE_OPTIONS_PANEL, 0);
+		getWindow().setFeatureDrawableAlpha(Window.FEATURE_OPTIONS_PANEL, 0);
 		mContent = new LinearLayout(getContext());
 		mContent.setOrientation(LinearLayout.VERTICAL);
 		setUpTitleBar();
@@ -198,4 +198,18 @@ public class WeiboDialog extends Dialog {
 
 		}
 	}
+
+    @SuppressLint("NewApi")
+    @Override
+    public void onBackPressed() {
+        try {
+            if (null != mWebView) {
+                mWebView.stopLoading();
+                mWebView.destroy();
+            }
+        } catch (Exception e) {
+        }
+        mListener.onCancel();
+        super.onBackPressed();
+    }
 }
