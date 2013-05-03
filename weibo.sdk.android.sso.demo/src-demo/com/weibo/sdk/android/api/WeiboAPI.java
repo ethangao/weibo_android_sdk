@@ -33,7 +33,7 @@ public abstract class WeiboAPI {
 	    if(oAuth2accessToken!=null){
 	        accessToken=oAuth2accessToken.getToken();
 	    }
-	   
+
 	}
 	public enum FEATURE {
 		ALL, ORIGINAL, PICTURE, VIDEO, MUSICE
@@ -91,23 +91,23 @@ public abstract class WeiboAPI {
 	    /**
 	     * 新微博数
 	     */
-		STATUS, 
+		STATUS,
 		/**
 		 * 新粉丝数
 		 */
-		FOLLOWER, 
+		FOLLOWER,
 		/**
 		 * 新评论数
 		 */
-		CMT, 
+		CMT,
 		/**
 		 * 新私信数
 		 */
-		DM, 
+		DM,
 		/**
 		 * 新提及我的微博数
 		 */
-		MENTION_STATUS, 
+		MENTION_STATUS,
 		/**
 		 * 新提及我的评论数
 		 */
@@ -119,22 +119,22 @@ public abstract class WeiboAPI {
 	 *
 	 */
 	public enum SORT {
-	    Oauth2AccessToken, 
+	    Oauth2AccessToken,
 	    SORT_AROUND
 	}
 
 	public enum SORT2 {
 		SORT_BY_TIME, SORT_BY_HOT
 	}
-	
+
 	public enum SORT3 {
 		SORT_BY_TIME, SORT_BY_DISTENCE
 	}
-	
+
 	public enum COMMENTS_TYPE {
 		NONE, CUR_STATUSES, ORIGAL_STATUSES, BOTH
 	}
-	
+
 	protected void request( final String url, final WeiboParameters params,
 			final String httpMethod,RequestListener listener) {
 		params.add("access_token", accessToken);

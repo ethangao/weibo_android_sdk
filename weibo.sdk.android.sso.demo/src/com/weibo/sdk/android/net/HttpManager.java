@@ -52,7 +52,7 @@ import com.weibo.sdk.android.WeiboParameters;
 import com.weibo.sdk.android.util.Utility;
 
 /**
- * 
+ *
  * @author luopeng (luopeng@staff.sina.com.cn)
  */
 public class HttpManager {
@@ -69,7 +69,7 @@ public class HttpManager {
 	private static final int SET_CONNECTION_TIMEOUT = 5 * 1000;
 	private static final int SET_SOCKET_TIMEOUT = 20 * 1000;
 	/**
-	 * 
+	 *
 	 * @param url 服务器地址
 	 * @param method "GET"or “POST”
 	 * @param params   存放参数的容器
@@ -93,7 +93,7 @@ public class HttpManager {
 				request = post;
 				byte[] data = null;
 				String _contentType=params.getValue("content-type");
-				
+
 				bos = new ByteArrayOutputStream();
 				if (!TextUtils.isEmpty(file)) {
 					paramToUpload(bos, params);
@@ -108,7 +108,7 @@ public class HttpManager {
 				    else{
 				        post.setHeader("Content-Type", "application/x-www-form-urlencoded");
 				    }
-					
+
 					String postParam = Utility.encodeParameters(params);
 					data = postParam.getBytes("UTF-8");
 					bos.write(data);
@@ -120,6 +120,7 @@ public class HttpManager {
 			} else if (method.equals("DELETE")) {
 				request = new HttpDelete(url);
 			}
+			request.addHeader("Accept-Encoding", "gzip");
 			HttpResponse response = client.execute(request);
 			StatusLine status = response.getStatusLine();
 			int statusCode = status.getStatusCode();
@@ -134,7 +135,7 @@ public class HttpManager {
 			throw new WeiboException(e);
 		}
 	}
-	
+
 	private static HttpClient getNewHttpClient() {
 		try {
 			KeyStore trustStore = KeyStore.getInstance(KeyStore.getDefaultType());
@@ -233,7 +234,7 @@ public class HttpManager {
 		    return;
 		}
 	    StringBuilder temp = new StringBuilder();
-		
+
 		temp.append(MP_BOUNDARY).append("\r\n");
 		temp.append("Content-Disposition: form-data; name=\"pic\"; filename=\"")
 				.append("news_image").append("\"\r\n");
@@ -269,7 +270,7 @@ public class HttpManager {
 
 	/**
 	 * 读取HttpResponse数据
-	 * 
+	 *
 	 * @param response
 	 * @return
 	 */
