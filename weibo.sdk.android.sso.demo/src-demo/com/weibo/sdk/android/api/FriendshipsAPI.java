@@ -17,7 +17,7 @@ public class FriendshipsAPI extends WeiboAPI {
 
 	/**
 	 * 获取用户的关注列表
-	 * 
+	 *
 	 * @param uid 需要查询的用户UID。
 	 * @param count 单页返回的记录条数，默认为50，最大不超过200。
 	 * @param cursor 返回结果的游标，下一页用返回值里的next_cursor，上一页用previous_cursor，默认为0。
@@ -40,7 +40,7 @@ public class FriendshipsAPI extends WeiboAPI {
 
 	/**
 	 * 获取用户的关注列表
-	 * 
+	 *
 	 * @param screen_name 需要查询的用户昵称。
 	 * @param count 单页返回的记录条数，默认为50，最大不超过200。
 	 * @param cursor 返回结果的游标，下一页用返回值里的next_cursor，上一页用previous_cursor，默认为0。
@@ -63,7 +63,7 @@ public class FriendshipsAPI extends WeiboAPI {
 
 	/**
 	 * 获取两个用户之间的共同关注人列表
-	 * 
+	 *
 	 * @param uid 需要获取共同关注关系的用户UID。
 	 * @param suid 需要获取共同关注关系的用户UID，默认为当前登录用户。
 	 * @param count 单页返回的记录条数，默认为50。
@@ -89,7 +89,7 @@ public class FriendshipsAPI extends WeiboAPI {
 
 	/**
 	 * 获取用户的双向关注列表，即互粉列表
-	 * 
+	 *
 	 * @param uid 需要获取双向关注列表的用户UID。
 	 * @param count 单页返回的记录条数，默认为50。
 	 * @param page 返回结果的页码，默认为1。
@@ -106,7 +106,7 @@ public class FriendshipsAPI extends WeiboAPI {
 
 	/**
 	 * 获取用户双向关注的用户ID列表，即互粉UID列表
-	 * 
+	 *
 	 * @param uid 需要获取双向关注列表的用户UID。
 	 * @param count 单页返回的记录条数，默认为50，最大不超过2000。
 	 * @param page 返回结果的页码，默认为1。
@@ -123,7 +123,7 @@ public class FriendshipsAPI extends WeiboAPI {
 
 	/**
 	 * 获取用户关注的用户UID列表
-	 * 
+	 *
 	 * @param uid 需要查询的用户UID。
 	 * @param count 单页返回的记录条数，默认为500，最大不超过5000。
 	 * @param cursor 返回结果的游标，下一页用返回值里的next_cursor，上一页用previous_cursor，默认为0。
@@ -139,7 +139,7 @@ public class FriendshipsAPI extends WeiboAPI {
 
 	/**
 	 * 获取用户关注的用户UID列表
-	 * 
+	 *
 	 * @param screen_name 需要查询的用户昵称。
 	 * @param count 单页返回的记录条数，默认为500，最大不超过5000。
 	 * @param cursor 返回结果的游标，下一页用返回值里的next_cursor，上一页用previous_cursor，默认为0。
@@ -156,7 +156,7 @@ public class FriendshipsAPI extends WeiboAPI {
 
 	/**
 	 * 获取用户的粉丝列表(最多返回5000条数据)
-	 * 
+	 *
 	 * @param uid 需要查询的用户UID。
 	 * @param count 单页返回的记录条数，默认为50，最大不超过200。
 	 * @param cursor 返回结果的游标，下一页用返回值里的next_cursor，上一页用previous_cursor，默认为0。
@@ -179,7 +179,7 @@ public class FriendshipsAPI extends WeiboAPI {
 
 	/**
 	 * 获取用户的粉丝列表(最多返回5000条数据)
-	 * 
+	 *
 	 * @param screen_name 需要查询的用户昵称。
 	 * @param count 单页返回的记录条数，默认为50，最大不超过200。
 	 * @param cursor 返回结果的游标，下一页用返回值里的next_cursor，上一页用previous_cursor，默认为0。
@@ -202,7 +202,7 @@ public class FriendshipsAPI extends WeiboAPI {
 
 	/**
 	 * 获取用户粉丝的用户UID列表
-	 * 
+	 *
 	 * @param uid 需要查询的用户UID。
 	 * @param count 单页返回的记录条数，默认为500，最大不超过5000。
 	 * @param cursor 返回结果的游标，下一页用返回值里的next_cursor，上一页用previous_cursor，默认为0。
@@ -218,7 +218,7 @@ public class FriendshipsAPI extends WeiboAPI {
 
 	/**
 	 * 获取用户粉丝的用户UID列表
-	 * 
+	 *
 	 * @param screen_name 需要查询的用户昵称。
 	 * @param count 单页返回的记录条数，默认为500，最大不超过5000。
 	 * @param cursor 返回结果的游标，下一页用返回值里的next_cursor，上一页用previous_cursor，默认为0。
@@ -235,7 +235,7 @@ public class FriendshipsAPI extends WeiboAPI {
 
 	/**
 	 * 获取用户的活跃粉丝列表
-	 * 
+	 *
 	 * @param uid 需要查询的用户UID。
 	 * @param count 返回的记录条数，默认为20，最大不超过200。
 	 * @param listener
@@ -249,7 +249,7 @@ public class FriendshipsAPI extends WeiboAPI {
 
 	/**
 	 * 获取当前登录用户的关注人中又关注了指定用户的用户列表
-	 * 
+	 *
 	 * @param uid 指定的关注目标用户UID。
 	 * @param count 单页返回的记录条数，默认为50。
 	 * @param page 返回结果的页码，默认为1。
@@ -266,7 +266,7 @@ public class FriendshipsAPI extends WeiboAPI {
 
 	/**
 	 * 获取两个用户之间的详细关注关系情况
-	 * 
+	 *
 	 * @param source_id 源用户的UID。
 	 * @param target_id 目标用户的UID。
 	 * @param listener
@@ -280,7 +280,7 @@ public class FriendshipsAPI extends WeiboAPI {
 
 	/**
 	 * 获取两个用户之间的详细关注关系情况
-	 * 
+	 *
 	 * @param source_id 源用户的UID。
 	 * @param target_screen_name 目标用户的微博昵称
 	 * @param listener
@@ -294,7 +294,7 @@ public class FriendshipsAPI extends WeiboAPI {
 
 	/**
 	 * 获取两个用户之间的详细关注关系情况
-	 * 
+	 *
 	 * @param source_screen_name 源用户的微博昵称。
 	 * @param target_id 目标用户的UID。
 	 * @param listener
@@ -308,7 +308,7 @@ public class FriendshipsAPI extends WeiboAPI {
 
 	/**
 	 * 获取两个用户之间的详细关注关系情况
-	 * 
+	 *
 	 * @param source_screen_name 源用户的微博昵称。
 	 * @param target_screen_name 目标用户的微博昵称
 	 * @param listener
@@ -323,7 +323,7 @@ public class FriendshipsAPI extends WeiboAPI {
 
 	/**
 	 * 关注一个用户
-	 * 
+	 *
 	 * @param uid 需要关注的用户ID。
 	 * @param screen_name 需要关注的用户昵称。
 	 * @param listener
@@ -337,7 +337,7 @@ public class FriendshipsAPI extends WeiboAPI {
 
 	/**
 	 * 关注一个用户
-	 * 
+	 *
 	 * @param screen_name 需要关注的用户昵称。
 	 * @param listener
 	 */
@@ -350,7 +350,7 @@ public class FriendshipsAPI extends WeiboAPI {
 
 	/**
 	 * 取消关注一个用户
-	 * 
+	 *
 	 * @param uid 需要取消关注的用户ID。
 	 * @param screen_name 需要取消关注的用户昵称。
 	 * @param listener
@@ -361,10 +361,10 @@ public class FriendshipsAPI extends WeiboAPI {
 		params.add("screen_name", screen_name);
 		request( SERVER_URL_PRIX + "/destroy.json", params, HTTPMETHOD_POST, listener);
 	}
-	
+
 	/**
 	 * 取消关注一个用户
-	 * 
+	 *
 	 * @param screen_name 需要取消关注的用户昵称。
 	 * @param listener
 	 */
@@ -373,5 +373,22 @@ public class FriendshipsAPI extends WeiboAPI {
 		WeiboParameters params = new WeiboParameters();
 		params.add("screen_name", screen_name);
 		request( SERVER_URL_PRIX + "/destroy.json", params, HTTPMETHOD_POST, listener);
+	}
+
+	public void getGroups(RequestListener listener) {
+	    WeiboParameters params = new WeiboParameters();
+	    request( SERVER_URL_PRIX + "/groups.json", params, HTTPMETHOD_GET, listener);
+	}
+
+	public void getGroupTimeline(long listId, long sinceId, long maxId, int count, int page,
+	        FEATURE feature, RequestListener listener) {
+	    WeiboParameters params = new WeiboParameters();
+	    params.add("list_id", listId);
+	    params.add("since_id", sinceId);
+	    params.add("max_id", maxId);
+	    params.add("count", count);
+	    params.add("base_app", 0);
+	    params.add("feature", feature.ordinal());
+        request( SERVER_URL_PRIX + "/groups/timeline.json", params, HTTPMETHOD_GET, listener);
 	}
 }

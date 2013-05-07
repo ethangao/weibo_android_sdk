@@ -1,6 +1,6 @@
 /*
  * This file is auto-generated.  DO NOT MODIFY.
- * Original file: /home/gaocx/weibo_android_sdk/weibo.sdk.android.sso.demo/src-sso/com/sina/sso/RemoteSSO.aidl
+ * Original file: /Users/gaocx/weibo_android_sdk/weibo.sdk.android.sso.demo/src-sso/com/sina/sso/RemoteSSO.aidl
  */
 package com.sina.sso;
 public interface RemoteSSO extends android.os.IInterface
@@ -23,13 +23,13 @@ public static com.sina.sso.RemoteSSO asInterface(android.os.IBinder obj)
 if ((obj==null)) {
 return null;
 }
-android.os.IInterface iin = obj.queryLocalInterface(DESCRIPTOR);
+android.os.IInterface iin = (android.os.IInterface)obj.queryLocalInterface(DESCRIPTOR);
 if (((iin!=null)&&(iin instanceof com.sina.sso.RemoteSSO))) {
 return ((com.sina.sso.RemoteSSO)iin);
 }
 return new com.sina.sso.RemoteSSO.Stub.Proxy(obj);
 }
-@Override public android.os.IBinder asBinder()
+public android.os.IBinder asBinder()
 {
 return this;
 }
@@ -68,7 +68,7 @@ Proxy(android.os.IBinder remote)
 {
 mRemote = remote;
 }
-@Override public android.os.IBinder asBinder()
+public android.os.IBinder asBinder()
 {
 return mRemote;
 }
@@ -76,7 +76,7 @@ public java.lang.String getInterfaceDescriptor()
 {
 return DESCRIPTOR;
 }
-@Override public java.lang.String getPackageName() throws android.os.RemoteException
+public java.lang.String getPackageName() throws android.os.RemoteException
 {
 android.os.Parcel _data = android.os.Parcel.obtain();
 android.os.Parcel _reply = android.os.Parcel.obtain();
@@ -93,7 +93,7 @@ _data.recycle();
 }
 return _result;
 }
-@Override public java.lang.String getActivityName() throws android.os.RemoteException
+public java.lang.String getActivityName() throws android.os.RemoteException
 {
 android.os.Parcel _data = android.os.Parcel.obtain();
 android.os.Parcel _reply = android.os.Parcel.obtain();
