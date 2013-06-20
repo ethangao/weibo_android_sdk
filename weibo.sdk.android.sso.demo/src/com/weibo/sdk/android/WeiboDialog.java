@@ -6,7 +6,6 @@ import java.io.InputStream;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 
-import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -170,7 +169,6 @@ public class WeiboDialog extends Dialog {
 			mWebView.setVisibility(View.VISIBLE);
 		}
 
-		@SuppressLint("NewApi")
         public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
 			handler.proceed();
 		}
@@ -199,7 +197,6 @@ public class WeiboDialog extends Dialog {
 		}
 	}
 
-    @SuppressLint("NewApi")
     @Override
     public void onBackPressed() {
         try {
