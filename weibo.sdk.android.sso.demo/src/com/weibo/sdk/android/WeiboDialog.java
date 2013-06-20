@@ -30,6 +30,7 @@ import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.view.Window;
 import android.webkit.SslErrorHandler;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
@@ -105,6 +106,9 @@ public class WeiboDialog extends Dialog {
 		mWebView.setVerticalScrollBarEnabled(false);
 		mWebView.setHorizontalScrollBarEnabled(false);
 		mWebView.getSettings().setJavaScriptEnabled(true);
+		mWebView.getSettings().setSaveFormData(false);
+		mWebView.getSettings().setSavePassword(false);
+		mWebView.getSettings().setCacheMode(WebSettings.LOAD_NO_CACHE);
 		mWebView.setWebViewClient(new WeiboDialog.WeiboWebViewClient());
 		mWebView.loadUrl(mUrl);
 		mWebView.setLayoutParams(FILL);

@@ -14,7 +14,7 @@ import android.webkit.CookieSyncManager;
  * @author luopeng (luopeng@staff.sina.com.cn)
  */
 public class Weibo {
-	public static String URL_OAUTH2_ACCESS_AUTHORIZE = "https://open.weibo.cn/oauth2/authorize";
+	public static String URL_OAUTH2_ACCESS_AUTHORIZE = "https://api.weibo.com/oauth2/authorize";
 
 	private static Weibo mWeiboInstance = null;
 
@@ -114,6 +114,7 @@ public class Weibo {
 		parameters.add("redirect_uri", redirecturl);
 		parameters.add("display", "mobile");
         parameters.add("forcelogin", "true");
+        parameters.add("scope", "friendships_groups_read,friendships_groups_write,follow_app_official_microblog");
 
 		if (accessToken != null && accessToken.isSessionValid()) {
 			parameters.add(KEY_TOKEN, accessToken.getToken());
