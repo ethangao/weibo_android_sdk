@@ -21,5 +21,5 @@
     <color name="weibosdk_transparent">#00000000</color>
     <color name="weibosdk_text_num_gray">#333</color>
     <color name="weibosdk_dialog_title_blue">#9CCCF7</color>
-    <color name="title_bar_bg_color">#71c4c8</color>
+    <color name="title_bar_bg_color">#2f2f2f</color>
 </resources>
