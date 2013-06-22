@@ -6,6 +6,7 @@ import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.webkit.CookieSyncManager;
 
@@ -26,6 +27,7 @@ public class Weibo {
 	public static final String KEY_TOKEN = "access_token";
 	public static final String KEY_EXPIRES = "expires_in";
 	public static final String KEY_REFRESHTOKEN = "refresh_token";
+	public static final String KEY_CODE = "code";
 	public static boolean isWifi=false;//当前是否为wifi
 	/**
 	 *
@@ -69,21 +71,14 @@ public class Weibo {
 			public void onComplete(Bundle values) {
 				// ensure any cookies set by the dialog are saved
 				CookieSyncManager.getInstance().sync();
-				if (null == accessToken) {
-					accessToken = new Oauth2AccessToken();
-				}
-				accessToken.setToken(values.getString(KEY_TOKEN));
-				accessToken.setExpiresIn(values.getString(KEY_EXPIRES));
-				accessToken.setRefreshToken(values.getString(KEY_REFRESHTOKEN));
-				if (accessToken.isSessionValid()) {
-					Log.d("Weibo-authorize",
-							"Login Success! access_token=" + accessToken.getToken() + " expires="
-									+ accessToken.getExpiresTime() + " refresh_token="
-									+ accessToken.getRefreshToken());
+
+				final String code = values.getString(KEY_CODE);
+				if (!TextUtils.isEmpty(code)) {
+					Log.d("Weibo-authorize", "Login Success! code=" + code);
 					listener.onComplete(values);
 				} else {
-					Log.d("Weibo-authorize", "Failed to receive access token");
-					listener.onWeiboException(new WeiboException("Failed to receive access token."));
+					Log.d("Weibo-authorize", "Failed to receive code");
+					listener.onWeiboException(new WeiboException("Failed to receive code."));
 				}
 			}
 
@@ -110,7 +105,7 @@ public class Weibo {
 	public void startDialog(Context context, WeiboParameters parameters,
 			final WeiboAuthListener listener) {
 		parameters.add("client_id", app_key);
-		parameters.add("response_type", "token");
+		parameters.add("response_type", "code");
 		parameters.add("redirect_uri", redirecturl);
 		parameters.add("display", "mobile");
         parameters.add("forcelogin", "true");
