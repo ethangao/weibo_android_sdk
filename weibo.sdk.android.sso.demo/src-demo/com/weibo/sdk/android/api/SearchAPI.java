@@ -16,7 +16,7 @@ public class SearchAPI extends WeiboAPI {
 
 	/**
 	 * 搜索用户时的联想搜索建议
-	 * 
+	 *
 	 * @param q 搜索的关键字，必须做URLencoding。
 	 * @param count 返回的记录条数，默认为10。
 	 * @param listener
@@ -31,7 +31,7 @@ public class SearchAPI extends WeiboAPI {
 
 	/**
 	 * 搜索微博时的联想搜索建议
-	 * 
+	 *
 	 * @param q 搜索的关键字，必须做URLencoding。
 	 * @param count 返回的记录条数，默认为10。
 	 * @param listener
@@ -46,7 +46,7 @@ public class SearchAPI extends WeiboAPI {
 
 	/**
 	 * 搜索学校时的联想搜索建议
-	 * 
+	 *
 	 * @param q 搜索的关键字，必须做URLencoding。
 	 * @param count 返回的记录条数，默认为10。
 	 * @param type 学校类型，0：全部、1：大学、2：高中、3：中专技校、4：初中、5：小学，默认为0。
@@ -63,7 +63,7 @@ public class SearchAPI extends WeiboAPI {
 
 	/**
 	 * 搜索公司时的联想搜索建议
-	 * 
+	 *
 	 * @param q 搜索的关键字，必须做URLencoding。
 	 * @param count 返回的记录条数，默认为10。
 	 * @param listener
@@ -78,7 +78,7 @@ public class SearchAPI extends WeiboAPI {
 
 	/**
 	 * 搜索应用时的联想搜索建议
-	 * 
+	 *
 	 * @param q 搜索的关键字，必须做URLencoding。
 	 * @param count 返回的记录条数，默认为10。
 	 * @param listener
@@ -92,7 +92,7 @@ public class SearchAPI extends WeiboAPI {
 
 	/**
 	 *  “@”用户时的联想建议
-	 * 
+	 *
 	 * @param q 搜索的关键字，必须做URLencoding。
 	 * @param count 返回的记录条数，默认为10，粉丝最多1000，关注最多2000。
 	 * @param type 联想类型，0：关注、1：粉丝。
@@ -108,5 +108,13 @@ public class SearchAPI extends WeiboAPI {
 		params.add("range", range.ordinal());
 		request( SERVER_URL_PRIX + "/suggestions/at_users.json", params, HTTPMETHOD_GET,
 				listener);
+	}
+
+	public void topics( String q, int count, int page, RequestListener listener) {
+	    WeiboParameters params = new WeiboParameters();
+	    params.add("q", q);
+	    params.add("count", count);
+	    params.add("page", page);
+	    request( SERVER_URL_PRIX + "/topics.json", params, HTTPMETHOD_GET, listener);
 	}
 }
