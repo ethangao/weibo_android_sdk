@@ -127,6 +127,10 @@ public class WeiboDialog extends Dialog {
         lp.rightMargin =0;
         lp.bottomMargin = 0;
         mContent.addView(mWebViewContainer, lp);
+
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.HONEYCOMB) {
+            mWebView.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
+        }
 	}
 
 	private class WeiboWebViewClient extends WebViewClient {
