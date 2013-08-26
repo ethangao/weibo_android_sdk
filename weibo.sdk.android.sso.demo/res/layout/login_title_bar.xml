@@ -12,10 +12,10 @@
         android:gravity="center"
         android:textSize="@dimen/title_bar_font_size"
         android:textColor="#ffffff"
-        android:shadowColor="#000000"
-        android:shadowDx="1.1"
-        android:shadowDy="1.1"
-        android:shadowRadius="1.3"
+        android:shadowColor="#7f000000"
+        android:shadowDx="1"
+        android:shadowDy="1"
+        android:shadowRadius="1"
         android:ellipsize="end"
         android:text="@string/login_string"/>
 
