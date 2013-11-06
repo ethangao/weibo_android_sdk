@@ -1,5 +1,7 @@
 package com.weibo.sdk.android;
 
+import java.util.List;
+
 import com.weibo.sdk.android.util.Utility;
 
 import android.Manifest;
@@ -8,6 +10,7 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.webkit.CookieManager;
 import android.webkit.CookieSyncManager;
 
 /**
@@ -65,13 +68,12 @@ public class Weibo {
 
 	public void startAuthDialog(Context context, final WeiboAuthListener listener) {
 		WeiboParameters params = new WeiboParameters();
-//		CookieSyncManager.createInstance(context);
+		CookieSyncManager.createInstance(context);
 		startDialog(context, params, new WeiboAuthListener() {
 			@Override
 			public void onComplete(Bundle values) {
 				// ensure any cookies set by the dialog are saved
 				CookieSyncManager.getInstance().sync();
-
 				final String code = values.getString(KEY_CODE);
 				if (!TextUtils.isEmpty(code)) {
 					Log.d("Weibo-authorize", "Login Success! code=" + code);

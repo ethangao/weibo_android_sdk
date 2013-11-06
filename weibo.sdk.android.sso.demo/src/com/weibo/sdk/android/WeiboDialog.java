@@ -6,6 +6,7 @@ import java.io.InputStream;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -100,7 +101,8 @@ public class WeiboDialog extends Dialog {
 		dismiss();
 	}
 
-	private void setUpWebView() {
+	@SuppressLint("NewApi")
+    private void setUpWebView() {
 		mWebViewContainer = new RelativeLayout(getContext());
 		mWebView = new WebView(getContext());
 		mWebView.setVerticalScrollBarEnabled(false);
