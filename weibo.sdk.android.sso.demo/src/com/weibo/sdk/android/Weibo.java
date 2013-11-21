@@ -18,7 +18,7 @@ import android.webkit.CookieSyncManager;
  * @author luopeng (luopeng@staff.sina.com.cn)
  */
 public class Weibo {
-	public static String URL_OAUTH2_ACCESS_AUTHORIZE = "https://open.weibo.cn/oauth2/authorize";
+	public static String URL_OAUTH2_ACCESS_AUTHORIZE = "https://api.weibo.com/oauth2/authorize";
 
 	private static Weibo mWeiboInstance = null;
 
